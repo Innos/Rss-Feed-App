@@ -1,0 +1,31 @@
+﻿#header-nav {
+    float: right;
+    position: inherit;
+    text-align: right;
+    padding-left: 0;
+    padding-top: 5px;
+}
+
+/* home */
+#intro h2 {
+  font-size: 40px;
+  line-height: 1;
+  letter-spacing: -2px;
+}
+
+
+/* logo */
+.logo a,.logo a:hover {
+    margin-top: -10px;
+	color:#fff;
+	text-decoration:none;
+    font-size: 0.8em;
+}
+.logo h1 {
+	font-weight:bold;
+}
+
+/* header */
+.navbar .nav li.active a {
+	font-weight:bold;
+}

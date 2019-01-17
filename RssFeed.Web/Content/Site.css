@@ -1,0 +1,110 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* icons */
+a [class^="icon-"] {
+	cursor:pointer;
+}
+
+[class^="icon-"].active {
+	color:#fff;
+}
+[class^="icon-"].active:hover {
+	background: #333;
+}
+
+.icon-1x, .icon-2x, .icon-3x, .icon-4x, .icon-5x {
+	text-align: center;
+}
+
+.icon-1x {
+	font-size: 17px !important;
+	width: 40px !important;
+	height: 40px !important;
+	line-height: 40px !important;
+}
+
+.icon-2x {
+	font-size: 26px !important;
+	width: 60px !important;
+	height: 60px !important;
+	line-height: 60px !important;
+}
+
+.icon-3x {
+	font-size: 39px !important;
+	width: 80px !important;
+	height: 80px !important;
+	line-height: 80px !important;
+}
+
+.icon-4x {
+	font-size: 52px !important;
+	width: 100px !important;
+	height: 100px !important;
+	line-height: 100px !important;
+}
+
+.icon-5x {
+	font-size: 65px !important;
+	width: 120px !important;
+	height: 120px !important;
+	line-height: 120px !important;
+}
+
+i.icon-bg-light,i.icon-bg-dark {
+	display: inline-block;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-o-border-radius: 3px;
+	-ms-border-radius: 3px;
+}
+
+i.icon-bg-light {
+	color: #444;
+	background: #4eb478;
+}
+
+i.icon-bg-light:hover {
+	color: #fff;
+}
+
+i.icon-bg-dark {
+	color: #fefefe;
+	background: #333;
+}
+
+.icon-4x, .icon-5x, .icon-6x, .icon-7x, .icon-8x, .icon-9x, .icon-10x {
+	border-bottom-width: 3px !important;
+}
+
+.icon-circled {
+	border-radius: 1000px !important; /* 146px 40px 100px 118px */
+	-moz-border-radius: 1000px !important;
+	-webkit-border-radius: 1000px !important;
+	-o-border-radius: 1000px !important;
+	-ms-border-radius: 1000px !important;
+}
