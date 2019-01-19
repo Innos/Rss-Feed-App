@@ -1,14 +1,12 @@
-﻿using RSSFeed.Data.Models.Contracts;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RSSFeed.Data.Models
+﻿namespace RSSFeed.Data.Models
 {
-    public class PersonalFeed : IDeletableEntity
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
+    using RSSFeed.Data.Models.Common;
+    using RSSFeed.Data.Models.Contracts;
+
+    public class PersonalFeed : DeletableEntity, IPersonalFeed
     {
         private ICollection<UnreadArticle> unreadArticles;
 
@@ -29,7 +27,7 @@ namespace RSSFeed.Data.Models
         [Required]
         public long CategoryId { get; set; }
 
-        public virtual Category Category { get; set; }
+        public virtual PersonalCategory Category { get; set; }
 
         [Required]
         public long FeedId { get; set; }
@@ -40,8 +38,6 @@ namespace RSSFeed.Data.Models
 
         public virtual ICollection<UnreadArticle> UnreadArticles { get; set; }
 
-        public bool IsDeleted { get; set; }
 
-        public DateTime? DeletedOn { get; set; }
     }
 }

@@ -3,11 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSSFeed", "RSSFeed\RSSFeed.csproj", "{2C4F08A2-976E-4153-933C-8D4C77754975}"
-	ProjectSection(ProjectDependencies) = postProject
-		{0E746E57-3A03-44CC-9822-D3791C286ECA} = {0E746E57-3A03-44CC-9822-D3791C286ECA}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSSFeed.Data", "RSSFeed.Data\RSSFeed.Data.csproj", "{0E746E57-3A03-44CC-9822-D3791C286ECA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RssFeed.Web", "RssFeed.Web\RssFeed.Web.csproj", "{638AF5F4-072D-45B7-9C6B-1FCB10AC22C2}"
@@ -15,16 +10,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RssFeed.Web", "RssFeed.Web\
 		{0E746E57-3A03-44CC-9822-D3791C286ECA} = {0E746E57-3A03-44CC-9822-D3791C286ECA}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RssFeed.Services", "RssFeed.Services\RssFeed.Services.csproj", "{DC9C32F7-44C5-427D-BE43-DE1961DA202B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2C4F08A2-976E-4153-933C-8D4C77754975}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2C4F08A2-976E-4153-933C-8D4C77754975}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2C4F08A2-976E-4153-933C-8D4C77754975}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2C4F08A2-976E-4153-933C-8D4C77754975}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0E746E57-3A03-44CC-9822-D3791C286ECA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0E746E57-3A03-44CC-9822-D3791C286ECA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E746E57-3A03-44CC-9822-D3791C286ECA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +26,10 @@ Global
 		{638AF5F4-072D-45B7-9C6B-1FCB10AC22C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{638AF5F4-072D-45B7-9C6B-1FCB10AC22C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{638AF5F4-072D-45B7-9C6B-1FCB10AC22C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC9C32F7-44C5-427D-BE43-DE1961DA202B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC9C32F7-44C5-427D-BE43-DE1961DA202B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC9C32F7-44C5-427D-BE43-DE1961DA202B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC9C32F7-44C5-427D-BE43-DE1961DA202B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

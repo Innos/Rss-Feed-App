@@ -1,14 +1,11 @@
-﻿using RSSFeed.Data.Models.Contracts;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RSSFeed.Data.Models
+﻿namespace RSSFeed.Data.Models
 {
-    public class Feed : IDeletableEntity
+    using System.ComponentModel.DataAnnotations;
+
+    using RSSFeed.Data.Models.Common;
+    using RSSFeed.Data.Models.Contracts;
+
+    public class Feed : DeletableEntity, IFeed
     {
         public Feed() : this (string.Empty)
         {
@@ -26,9 +23,5 @@ namespace RSSFeed.Data.Models
         public string Url { get; set; }
 
         public int ArticlesCount { get; set; }
-
-        public bool IsDeleted { get; set; }
-
-        public DateTime? DeletedOn { get; set; }
     }
 }

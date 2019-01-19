@@ -15,7 +15,7 @@ namespace RSSFeed.Data
 
        IRepository<ActivityLog> ActivityLogs { get; }
 
-       IDeletableEntityRepository<Category> Categories { get; }
+       IDeletableEntityRepository<PersonalCategory> Categories { get; }
 
        IDeletableEntityRepository<Feed> Feeds { get; }
 

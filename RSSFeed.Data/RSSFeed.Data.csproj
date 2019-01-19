@@ -76,8 +76,13 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ActivityLog.cs" />
-    <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\Contracts\IDeletableEntity.cs" />
+    <Compile Include="Models\Common\DeletableEntity.cs" />
+    <Compile Include="Models\Contracts\IFeed.cs" />
+    <Compile Include="Models\Contracts\IPersonalCategory.cs" />
+    <Compile Include="Models\Contracts\IPersonalFeed.cs" />
+    <Compile Include="Models\Contracts\IUser.cs" />
+    <Compile Include="Models\PersonalCategory.cs" />
+    <Compile Include="Models\Contracts\Common\IDeletableEntity.cs" />
     <Compile Include="Models\Feed.cs" />
     <Compile Include="Models\PersonalFeed.cs" />
     <Compile Include="Models\UnreadArticles.cs" />

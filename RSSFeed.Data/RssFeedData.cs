@@ -29,7 +29,7 @@ namespace RSSFeed.Data
 
         public IRepository<ActivityLog> ActivityLogs => this.GetRepository<ActivityLog>();
 
-        public IDeletableEntityRepository<Category> Categories => this.GetDeletableEntityRepository<Category>();
+        public IDeletableEntityRepository<PersonalCategory> Categories => this.GetDeletableEntityRepository<PersonalCategory>();
 
         public IDeletableEntityRepository<Feed> Feeds => this.GetDeletableEntityRepository<Feed>();
 
