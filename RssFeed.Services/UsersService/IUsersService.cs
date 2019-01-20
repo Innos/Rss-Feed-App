@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RssFeed.Services.UsersService
+﻿namespace RssFeed.Services.UsersService
 {
-    public interface IUsersService<TUser>
-    {
+    using System.Linq;
 
+    using RSSFeed.Data.Models.Contracts;
+
+    public interface IUsersService<TUser>
+        where TUser : class, IUser, new()
+    {
+        IQueryable<TUser> GetUserByIdQuery(string userId);
+
+        TUser GetUserByUsername(string username);
     }
 }

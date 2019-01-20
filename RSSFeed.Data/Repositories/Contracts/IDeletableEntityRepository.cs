@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace RSSFeed.Data.Repositories.Contracts
 {
+    using RSSFeed.Data.Models.Contracts.Common;
+
     public interface IDeletableEntityRepository<T> : IRepository<T>
         where T : class, IDeletableEntity
     {

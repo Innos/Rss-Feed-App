@@ -15,5 +15,7 @@
         bool IsActive { get; set; }
 
         ICollection<ActivityLog> ActivityLogs { get; }
+
+        ICollection<PersonalCategory> PersonalCategories { get; }
     }
 }

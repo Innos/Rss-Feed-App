@@ -1,17 +1,16 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RSSFeed.Data.Models
+﻿namespace RSSFeed.Data.Models
 {
+    using System;
+    using System.Collections.Generic;
     using System.Security.Claims;
+    using System.Threading.Tasks;
 
     using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
 
-    public class User : IdentityUser
+    using IUser = RSSFeed.Data.Models.Contracts.IUser;
+
+    public class User : IdentityUser, IUser
     {
         private ICollection<ActivityLog> activityLogs;
 
@@ -19,9 +18,10 @@ namespace RSSFeed.Data.Models
         {
             this.IsActive = true;
             this.activityLogs = new HashSet<ActivityLog>();
+            this.PersonalCategories = new HashSet<PersonalCategory>();
         }
 
-        public User() : base()
+        public User()
         {
             this.IsActive = true;
             this.activityLogs = new HashSet<ActivityLog>();
@@ -34,6 +34,12 @@ namespace RSSFeed.Data.Models
             get { return this.activityLogs; }
             set { this.activityLogs = value; }
         }
+
+        public ICollection<PersonalCategory> PersonalCategories { get; set; }
+
+        public bool IsDeleted { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {

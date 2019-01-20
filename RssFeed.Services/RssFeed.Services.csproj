@@ -40,6 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PersonalCategories\IPersonalCategoriesService.cs" />
+    <Compile Include="PersonalCategories\PersonalCategoriesService.cs" />
+    <Compile Include="PersonalFeedsService\IPersonalFeedsService.cs" />
+    <Compile Include="PersonalFeedsService\PersonalFeedsService.cs" />
     <Compile Include="UsersService\UsersService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsersService\IUsersService.cs" />

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RssFeed.Services.UsersService
+﻿namespace RssFeed.Services.UsersService
 {
+    using System.Linq;
+
     using RSSFeed.Data.Models.Contracts;
     using RSSFeed.Data.Repositories.Contracts;
 
@@ -13,5 +9,20 @@ namespace RssFeed.Services.UsersService
         where TUser : class, IUser, new()
     {
         protected IDeletableEntityRepository<TUser> Users { get; }
+
+        public UsersService(IDeletableEntityRepository<TUser> usersRepository)
+        {
+            this.Users = usersRepository;
+        }
+
+        public IQueryable<TUser> GetUserByIdQuery(string userId)
+        {
+            return this.Users.All().Where(x => x.Id == userId);
+        }
+
+        public TUser GetUserByUsername(string username)
+        {
+            return this.Users.All().FirstOrDefault(x => x.UserName == username);
+        }
     }
 }

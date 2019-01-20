@@ -11,6 +11,8 @@ using Z.EntityFramework.Plus;
 
 namespace RSSFeed.Data.Repositories
 {
+    using RSSFeed.Data.Models.Contracts.Common;
+
     public class DeletableEntityRepository<T> : Repository<T>, IDeletableEntityRepository<T>
             where T : class, IDeletableEntity, new()
     {

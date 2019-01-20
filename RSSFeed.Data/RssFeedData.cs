@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 
 namespace RSSFeed.Data
 {
+    using RSSFeed.Data.Models.Contracts.Common;
+
     public class RssFeedData
     {
         private readonly IDictionary<Type, object> repositories = new Dictionary<Type, object>();
