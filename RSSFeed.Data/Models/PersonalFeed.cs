@@ -1,10 +1,10 @@
-﻿namespace RSSFeed.Data.Models
+﻿namespace RssFeed.Data.Models
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using RSSFeed.Data.Models.Common;
-    using RSSFeed.Data.Models.Contracts;
+    using RssFeed.Data.Models.Common;
+    using RssFeed.Data.Models.Contracts;
 
     public class PersonalFeed : DeletableEntity, IPersonalFeed
     {

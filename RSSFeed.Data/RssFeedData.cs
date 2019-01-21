@@ -1,7 +1,7 @@
-﻿using RSSFeed.Data.Models;
-using RSSFeed.Data.Models.Contracts;
-using RSSFeed.Data.Repositories;
-using RSSFeed.Data.Repositories.Contracts;
+﻿using RssFeed.Data.Models;
+using RssFeed.Data.Models.Contracts;
+using RssFeed.Data.Repositories;
+using RssFeed.Data.Repositories.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -9,9 +9,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RSSFeed.Data
+namespace RssFeed.Data
 {
-    using RSSFeed.Data.Models.Contracts.Common;
+    using RssFeed.Data.Models;
+    using RssFeed.Data.Models.Contracts.Common;
+    using RssFeed.Data.Repositories;
+    using RssFeed.Data.Repositories.Contracts;
 
     public class RssFeedData
     {

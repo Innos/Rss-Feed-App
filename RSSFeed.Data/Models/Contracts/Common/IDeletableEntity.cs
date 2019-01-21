@@ -1,4 +1,4 @@
-﻿namespace RSSFeed.Data.Models.Contracts.Common
+﻿namespace RssFeed.Data.Models.Contracts.Common
 {
     using System;
 

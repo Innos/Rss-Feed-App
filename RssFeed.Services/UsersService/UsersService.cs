@@ -2,8 +2,8 @@
 {
     using System.Linq;
 
-    using RSSFeed.Data.Models.Contracts;
-    using RSSFeed.Data.Repositories.Contracts;
+    using RssFeed.Data.Models.Contracts;
+    using RssFeed.Data.Repositories.Contracts;
 
     public class UsersService<TUser> : IUsersService<TUser>
         where TUser : class, IUser, new()

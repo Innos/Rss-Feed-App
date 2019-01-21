@@ -3,19 +3,17 @@
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
 
-    public class PersonalFeedViewModel
+    public class PersonalFeedInputModel
     {
         [HiddenInput(DisplayValue = false)]
         public long Id { get; set; }
 
         [Display(Name = "Категория")]
-        public string CategoryName { get; set; }
+        public long CategoryId { get; set; }
 
         [Display(Name = "Rss Feed адрес")]
-        public string FeedUrl { get; set; }
-
-        [Display(Name = "Брой непрочетени статии")]
-        public int UnreadArticlesCount { get; set; }
-
+        [Required(ErrorMessage = "Адресът на Rss Feed-a е задължителен!")]
+        [Url]
+        public string Url { get; set; }
     }
 }

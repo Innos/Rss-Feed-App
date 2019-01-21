@@ -2,24 +2,30 @@
 {
     using System.Linq;
 
-    using RSSFeed.Data.Models.Contracts;
-    using RSSFeed.Data.Repositories.Contracts;
+    using RssFeed.Data.Models;
+    using RssFeed.Data.Models.Contracts;
+    using RssFeed.Data.Repositories.Contracts;
 
     public class PersonalCategoriesService : IPersonalCategoriesService
     {
-        protected IDeletableEntityRepository<IPersonalCategory> PersonalCategories;
+        protected IDeletableEntityRepository<PersonalCategory> PersonalCategories;
 
-        public PersonalCategoriesService(IDeletableEntityRepository<IPersonalCategory> personalCategoriesRepository)
+        public PersonalCategoriesService(IDeletableEntityRepository<PersonalCategory> personalCategoriesRepository)
         {
             this.PersonalCategories = personalCategoriesRepository;
         }
 
-        public IPersonalCategory GetByNameAndUser(string personalCategoryName, string userId)
+        public PersonalCategory GetByNameAndUser(string personalCategoryName, string userId)
         {
             return
                 this.PersonalCategories
                     .All()
                     .FirstOrDefault(pc => pc.Name == personalCategoryName && pc.UserId == userId);
+        }
+
+        public IQueryable<PersonalCategory> GetByUser(string userId)
+        {
+            return this.PersonalCategories.All().Where(pc => pc.UserId == userId);
         }
     }
 }

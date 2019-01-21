@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSSFeed.Data", "RSSFeed.Data\RSSFeed.Data.csproj", "{0E746E57-3A03-44CC-9822-D3791C286ECA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RssFeed.Data", "RSSFeed.Data\RssFeed.Data.csproj", "{0E746E57-3A03-44CC-9822-D3791C286ECA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RssFeed.Web", "RssFeed.Web\RssFeed.Web.csproj", "{638AF5F4-072D-45B7-9C6B-1FCB10AC22C2}"
 	ProjectSection(ProjectDependencies) = postProject

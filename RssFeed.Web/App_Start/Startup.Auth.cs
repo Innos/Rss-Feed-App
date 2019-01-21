@@ -1,26 +1,35 @@
-﻿using System;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin;
-using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Google;
-using Owin;
-using RssFeed.Web.Models;
-
-namespace RssFeed.Web
+﻿namespace RssFeed.Web
 {
-    using RSSFeed.Data;
-    using RSSFeed.Data.Models;
+    using System;
+    using System.Data.Entity;
+
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.Owin;
+    using Microsoft.Owin.Security.Cookies;
+
+    using Owin;
+
+    using RssFeed.Data.Models;
 
     public partial class Startup
     {
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
+            var serviceProvider = SimpleInjectorConfig.Container;
+
             // Configure the db context, user manager and signin manager to use a single instance per request
-            app.CreatePerOwinContext(RssFeedDbContext.Create);
-            app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
-            app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
+            app.CreatePerOwinContext(serviceProvider.GetInstance<DbContext>);
+            app.CreatePerOwinContext<ApplicationUserManager>(
+                (options, owinContext) =>
+                {
+                    var userManager = serviceProvider.GetInstance<ApplicationUserManager>();
+                    userManager.Configure(options, owinContext);
+                    return userManager;
+                });
+
+            app.CreatePerOwinContext(serviceProvider.GetInstance<ApplicationSignInManager>);
 
             // Enable the application to use a cookie to store information for the signed in user
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider

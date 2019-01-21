@@ -2,7 +2,7 @@
 {
     using System.Linq;
 
-    using RSSFeed.Data.Models.Contracts;
+    using RssFeed.Data.Models.Contracts;
 
     public interface IUsersService<TUser>
         where TUser : class, IUser, new()

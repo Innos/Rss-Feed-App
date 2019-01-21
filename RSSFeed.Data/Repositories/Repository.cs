@@ -8,12 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 using EntityFramework.BulkInsert.Extensions;
-using RSSFeed.Data.Repositories.Contracts;
+using RssFeed.Data.Repositories.Contracts;
 using Z.EntityFramework.Plus;
 
 
-namespace RSSFeed.Data.Repositories
+namespace RssFeed.Data.Repositories
 {
+    using RssFeed.Data.Repositories.Contracts;
+
     public class Repository<T> : IRepository<T>
             where T : class
     {

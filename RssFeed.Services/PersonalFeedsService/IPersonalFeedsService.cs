@@ -2,11 +2,11 @@
 {
     using System.Linq;
 
-    using RSSFeed.Data.Models.Contracts;
+    using RssFeed.Data.Models;
 
     public interface IPersonalFeedsService
     {
-        IQueryable<IPersonalFeed> GetPersonalFeedsByUserId(string userId);
+        IQueryable<PersonalFeed> GetPersonalFeedsByUserId(string userId);
 
     }
 }

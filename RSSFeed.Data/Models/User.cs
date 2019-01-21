@@ -1,4 +1,4 @@
-﻿namespace RSSFeed.Data.Models
+﻿namespace RssFeed.Data.Models
 {
     using System;
     using System.Collections.Generic;
@@ -8,7 +8,7 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
 
-    using IUser = RSSFeed.Data.Models.Contracts.IUser;
+    using IUser = RssFeed.Data.Models.Contracts.IUser;
 
     public class User : IdentityUser, IUser
     {

@@ -1,9 +1,14 @@
 ﻿namespace RssFeed.Services.PersonalCategories
 {
-    using RSSFeed.Data.Models.Contracts;
+    using System.Linq;
+
+    using RssFeed.Data.Models;
+    using RssFeed.Data.Models.Contracts;
 
     public interface IPersonalCategoriesService
     {
-        IPersonalCategory GetByNameAndUser(string personalCategoryName, string userId);
+        PersonalCategory GetByNameAndUser(string personalCategoryName, string userId);
+
+        IQueryable<PersonalCategory> GetByUser(string userId);
     }
 }

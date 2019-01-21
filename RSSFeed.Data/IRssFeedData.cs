@@ -1,5 +1,5 @@
-﻿using RSSFeed.Data.Models;
-using RSSFeed.Data.Repositories.Contracts;
+﻿using RssFeed.Data.Models;
+using RssFeed.Data.Repositories.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,8 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RSSFeed.Data
+namespace RssFeed.Data
 {
+    using RssFeed.Data.Models;
+    using RssFeed.Data.Repositories.Contracts;
+
     public interface IRssFeedData
     {
        DbContext Context { get; }

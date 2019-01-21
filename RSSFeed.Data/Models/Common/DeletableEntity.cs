@@ -1,9 +1,9 @@
-﻿namespace RSSFeed.Data.Models.Common
+﻿namespace RssFeed.Data.Models.Common
 {
     using System;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    using RSSFeed.Data.Models.Contracts.Common;
+    using RssFeed.Data.Models.Contracts.Common;
 
     public class DeletableEntity : IDeletableEntity
     {

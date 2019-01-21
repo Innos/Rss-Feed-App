@@ -1,46 +1,74 @@
 ﻿namespace RssFeed.Web.Controllers
 {
-    using System.Data.Entity;
     using System.Linq;
-    using System.Net;
+    using System.Transactions;
     using System.Web.Mvc;
 
+    using AutoMapper;
+    using AutoMapper.QueryableExtensions;
+
+    using RssFeed.Services.Feeds;
+    using RssFeed.Services.PersonalCategories;
+    using RssFeed.Services.UsersService;
     using RssFeed.Web.Models;
 
-    using RSSFeed.Data;
-    using RSSFeed.Data.Models;
+    using RssFeed.Data.Models;
+    using RssFeed.Data.Repositories.Contracts;
 
-    public class PersonalFeedsController : Controller
+    public class PersonalFeedsController : BaseAuthorizedController
     {
-        private RssFeedDbContext db = new RssFeedDbContext();
+        private readonly IDeletableEntityRepository<Feed> feedsRepository;
+        private readonly IDeletableEntityRepository<PersonalFeed> personalFeedsRepository;
+        private readonly IFeedsService feedsService;
+        private readonly IPersonalCategoriesService personalCategoriesService;
+
+        public PersonalFeedsController(
+            IUsersService<User> usersService,
+            IDeletableEntityRepository<Feed> feedsRepository,
+            IDeletableEntityRepository<PersonalFeed> personalFeedsRepository,
+            IFeedsService feedsService,
+            IPersonalCategoriesService personalCategoriesService) 
+            : base(usersService)
+        {
+            this.feedsRepository = feedsRepository;
+            this.personalFeedsRepository = personalFeedsRepository;
+            this.feedsService = feedsService;
+            this.personalCategoriesService = personalCategoriesService;
+        }
 
         // GET: PersonalFeeds
         public ActionResult Index()
         {
-            var personalFeeds = this.db.PersonalFeeds.Include(p => p.Category).Include(p => p.Feed);
-            return this.View(personalFeeds.ToList());
+            var personalFeedViewModels = 
+                this.personalFeedsRepository
+                .All()
+                .ProjectTo<PersonalFeedViewModel>()
+                .ToList();
+
+            return this.View(personalFeedViewModels);
         }
 
         // GET: PersonalFeeds/Details/5
         public ActionResult Details(long? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            PersonalFeed personalFeed = this.db.PersonalFeeds.Find(id);
+            PersonalFeed personalFeed = this.personalFeedsRepository.GetById(id);
+
             if (personalFeed == null)
             {
                 return this.HttpNotFound();
             }
-            return this.View(personalFeed);
+
+            var personalFeedViewModel = Mapper.Map<PersonalFeedViewModel>(personalFeed);
+
+            return this.View(personalFeedViewModel);
         }
 
         // GET: PersonalFeeds/Create
         public ActionResult Create()
         {
-            this.ViewBag.CategoryId = new SelectList(this.db.Categories, "Id", "Name");
-            this.ViewBag.FeedId = new SelectList(this.db.Feeds, "Id", "Url");
+            var categories = this.personalCategoriesService.GetByUser(this.UserProfile.Id);
+            this.ViewBag.CategoryId = new SelectList(categories, "Id", "Name");
+            //this.ViewBag.FeedId = new SelectList(this.db.Feeds, "Id", "Url");
             return this.View();
         }
 
@@ -49,69 +77,94 @@
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(PersonalFeedViewModel personalFeedViewModel)
+        public ActionResult Create(PersonalFeedInputModel personalFeedInputModel)
         {
             if (this.ModelState.IsValid)
             {
-                this.db.PersonalFeeds.Add(personalFeedViewModel);
-                this.db.SaveChanges();
+                if (!this.feedsService.ExistsByUrl(personalFeedInputModel.Url))
+                {
+                    this.feedsRepository.Add(new Feed() {Url = personalFeedInputModel.Url});    
+                }
+
+                var feed = this.feedsService.GetByUrl(personalFeedInputModel.Url);
+
+                var personalFeed = Mapper.Map<PersonalFeed>(personalFeedInputModel);
+                personalFeed.FeedId = feed.Id;
+
+                this.personalFeedsRepository.Add(personalFeed);
+                this.feedsRepository.SaveChanges();
+
+                //this.db.PersonalFeeds.Add(personalFeed);
+                //this.db.SaveChanges();
                 return this.RedirectToAction("Index");
             }
 
-            this.ViewBag.CategoryId = new SelectList(this.db.Categories, "Id", "Name", personalFeedViewModel.CategoryId);
+            var categories = this.personalCategoriesService.GetByUser(this.UserProfile.Id);
+            this.ViewBag.CategoryId = new SelectList(categories, "Id", "Name", personalFeedInputModel.CategoryId);
             //this.ViewBag.FeedId = new SelectList(this.db.Feeds, "Id", "Url", personalFeedViewModel.FeedId);
-            return this.View(personalFeedViewModel);
+            return this.View(personalFeedInputModel);
         }
 
         // GET: PersonalFeeds/Edit/5
         public ActionResult Edit(long? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            PersonalFeed personalFeed = this.db.PersonalFeeds.Find(id);
+            var personalFeed = this.personalFeedsRepository.GetById(id);
             if (personalFeed == null)
             {
                 return this.HttpNotFound();
             }
-            this.ViewBag.CategoryId = new SelectList(this.db.Categories, "Id", "Name", personalFeed.CategoryId);
-            this.ViewBag.FeedId = new SelectList(this.db.Feeds, "Id", "Url", personalFeed.FeedId);
-            return this.View(personalFeed);
+
+            var categories = this.personalCategoriesService.GetByUser(this.UserProfile.Id);
+            this.ViewBag.CategoryId = new SelectList(categories, "Id", "Name", personalFeed.CategoryId);
+            //this.ViewBag.FeedId = new SelectList(this.db.Feeds, "Id", "Url", personalFeed.FeedId);
+
+            var personalFeedInputModel = Mapper.Map<PersonalFeedInputModel>(personalFeed);
+
+            return this.View(personalFeedInputModel);
         }
 
-        // POST: PersonalFeeds/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CategoryId,FeedId,LastKnownArticleId,IsDeleted,DeletedOn")] PersonalFeed personalFeed)
+        public ActionResult Edit(PersonalFeedInputModel personalFeedInputModel)
         {
             if (this.ModelState.IsValid)
             {
-                this.db.Entry(personalFeed).State = EntityState.Modified;
-                this.db.SaveChanges();
+                using (var transaction = new TransactionScope())
+                {
+                    if (!this.feedsService.ExistsByUrl(personalFeedInputModel.Url))
+                    {
+                        this.feedsRepository.Add(new Feed() { Url = personalFeedInputModel.Url });
+                    }
+                }
+
+                var feed = this.feedsService.GetByUrl(personalFeedInputModel.Url);
+
+                var personalFeed = Mapper.Map<PersonalFeed>(personalFeedInputModel);
+                personalFeed.FeedId = feed.Id;
+
+                this.personalFeedsRepository.Update(personalFeed);
+                this.feedsRepository.SaveChanges();
+
                 return this.RedirectToAction("Index");
             }
 
-            this.ViewBag.CategoryId = new SelectList(this.db.Categories, "Id", "Name", personalFeed.CategoryId);
-            this.ViewBag.FeedId = new SelectList(this.db.Feeds, "Id", "Url", personalFeed.FeedId);
-            return this.View(personalFeed);
+            var categories = this.personalCategoriesService.GetByUser(this.UserProfile.Id);
+            this.ViewBag.CategoryId = new SelectList(categories, "Id", "Name", personalFeedInputModel.CategoryId);
+            
+            return this.View(personalFeedInputModel);
         }
 
         // GET: PersonalFeeds/Delete/5
         public ActionResult Delete(long? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            PersonalFeed personalFeed = this.db.PersonalFeeds.Find(id);
+            var personalFeed = this.personalFeedsRepository.GetById(id);
             if (personalFeed == null)
             {
                 return this.HttpNotFound();
             }
-            return this.View(personalFeed);
+
+            var personalFeedViewModel = Mapper.Map<PersonalFeedViewModel>(personalFeed);
+            return this.View(personalFeedViewModel);
         }
 
         // POST: PersonalFeeds/Delete/5
@@ -119,24 +172,19 @@
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(long id)
         {
-            PersonalFeed personalFeed = this.db.PersonalFeeds.Find(id);
+            var personalFeed = this.personalFeedsRepository.GetById(id);
             if (personalFeed == null)
             {
                 return this.HttpNotFound();
             }
 
-            this.db.PersonalFeeds.Remove(personalFeed);
-            this.db.SaveChanges();
-            return this.RedirectToAction("Index");
-        }
+            this.personalFeedsRepository.Delete(id);
+            this.personalFeedsRepository.SaveChanges();
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                this.db.Dispose();
-            }
-            base.Dispose(disposing);
+            //this.db.PersonalFeeds.Remove(personalFeed);
+            //this.db.SaveChanges();
+
+            return this.RedirectToAction("Index");
         }
     }
 }

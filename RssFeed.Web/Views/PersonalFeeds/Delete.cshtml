@@ -1,4 +1,4 @@
-﻿@model RSSFeed.Data.Models.PersonalFeed
+﻿@model RssFeed.Web.Models.PersonalFeedViewModel
 
 @{
     ViewBag.Title = "Delete";
@@ -12,45 +12,28 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Category.Name)
+            @Html.DisplayNameFor(model => model.CategoryName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Category.Name)
+            @Html.DisplayFor(model => model.CategoryName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Feed.Url)
+            @Html.DisplayNameFor(model => model.FeedUrl)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Feed.Url)
+            @Html.DisplayFor(model => model.FeedUrl)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LastKnownArticleId)
+            @Html.DisplayNameFor(model => model.UnreadArticlesCount)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.LastKnownArticleId)
+            @Html.DisplayFor(model => model.UnreadArticlesCount)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsDeleted)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DeletedOn)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DeletedOn)
-        </dd>
-
     </dl>
 
     @using (Html.BeginForm()) {

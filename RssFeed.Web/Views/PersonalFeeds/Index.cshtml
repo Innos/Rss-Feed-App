@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RSSFeed.Data.Models.PersonalFeed>
+﻿@model IEnumerable<RssFeed.Web.Models.PersonalFeedViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -12,19 +12,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Category.Name)
+            @Html.DisplayNameFor(model => model.CategoryName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Feed.Url)
+            @Html.DisplayNameFor(model => model.FeedUrl)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastKnownArticleId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DeletedOn)
+            @Html.DisplayNameFor(model => model.UnreadArticlesCount)
         </th>
         <th></th>
     </tr>
@@ -32,19 +26,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Category.Name)
+            @Html.DisplayFor(modelItem => item.CategoryName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Feed.Url)
+            @Html.DisplayFor(modelItem => item.FeedUrl)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LastKnownArticleId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsDeleted)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DeletedOn)
+            @Html.DisplayFor(modelItem => item.UnreadArticlesCount)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

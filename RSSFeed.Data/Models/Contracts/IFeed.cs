@@ -1,6 +1,6 @@
-﻿namespace RSSFeed.Data.Models.Contracts
+﻿namespace RssFeed.Data.Models.Contracts
 {
-    using RSSFeed.Data.Models.Contracts.Common;
+    using RssFeed.Data.Models.Contracts.Common;
 
     public interface IFeed : IDeletableEntity
     {

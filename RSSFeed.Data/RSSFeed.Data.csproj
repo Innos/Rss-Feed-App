@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{0E746E57-3A03-44CC-9822-D3791C286ECA}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>RSSFeed.Data</RootNamespace>
-    <AssemblyName>RSSFeed.Data</AssemblyName>
+    <RootNamespace>RssFeed.Data</RootNamespace>
+    <AssemblyName>RssFeed.Data</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -70,11 +70,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IRssFeedData.cs" />
-    <Compile Include="Migrations\201901162105005_InitialMigration.cs" />
-    <Compile Include="Migrations\201901162105005_InitialMigration.Designer.cs">
-      <DependentUpon>201901162105005_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201901210330341_InitialCommit.cs" />
+    <Compile Include="Migrations\201901210330341_InitialCommit.Designer.cs">
+      <DependentUpon>201901210330341_InitialCommit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\DefaultMigrationConfiguration.cs" />
     <Compile Include="Models\ActivityLog.cs" />
     <Compile Include="Models\Common\DeletableEntity.cs" />
     <Compile Include="Models\Contracts\IFeed.cs" />
@@ -103,8 +103,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901162105005_InitialMigration.resx">
-      <DependentUpon>201901162105005_InitialMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901210330341_InitialCommit.resx">
+      <DependentUpon>201901210330341_InitialCommit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

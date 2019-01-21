@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RSSFeed.Data.Models
+namespace RssFeed.Data.Models
 {
     public class ActivityLog
     {

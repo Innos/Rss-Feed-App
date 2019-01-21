@@ -1,17 +1,14 @@
-﻿using RSSFeed.Data.Models.Contracts;
-using RSSFeed.Data.Repositories.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using Z.EntityFramework.Plus;
-
-namespace RSSFeed.Data.Repositories
+﻿namespace RssFeed.Data.Repositories
 {
-    using RSSFeed.Data.Models.Contracts.Common;
+    using System;
+    using System.Data.Entity;
+    using System.Linq;
+    using System.Linq.Expressions;
+
+    using RssFeed.Data.Repositories.Contracts;
+    using RssFeed.Data.Models.Contracts.Common;
+
+    using Z.EntityFramework.Plus;
 
     public class DeletableEntityRepository<T> : Repository<T>, IDeletableEntityRepository<T>
             where T : class, IDeletableEntity, new()

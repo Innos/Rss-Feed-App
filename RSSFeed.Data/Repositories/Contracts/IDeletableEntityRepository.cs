@@ -1,4 +1,4 @@
-﻿using RSSFeed.Data.Models.Contracts;
+﻿using RssFeed.Data.Models.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,9 +6,9 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RSSFeed.Data.Repositories.Contracts
+namespace RssFeed.Data.Repositories.Contracts
 {
-    using RSSFeed.Data.Models.Contracts.Common;
+    using RssFeed.Data.Models.Contracts.Common;
 
     public interface IDeletableEntityRepository<T> : IRepository<T>
         where T : class, IDeletableEntity

@@ -10,17 +10,13 @@
     using Microsoft.Owin.Security;
 
     using Models;
-    using RSSFeed.Data.Models;
+    using RssFeed.Data.Models;
 
     [Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager signInManager;
         private ApplicationUserManager userManager;
-
-        public AccountController()
-        {
-        }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {

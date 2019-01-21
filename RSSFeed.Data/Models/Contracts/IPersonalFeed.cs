@@ -1,8 +1,8 @@
-﻿namespace RSSFeed.Data.Models.Contracts
+﻿namespace RssFeed.Data.Models.Contracts
 {
     using System.Collections.Generic;
 
-    using RSSFeed.Data.Models.Contracts.Common;
+    using RssFeed.Data.Models.Contracts.Common;
 
     public interface IPersonalFeed : IDeletableEntity
     {
